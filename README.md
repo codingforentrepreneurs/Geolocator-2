@@ -1,4 +1,4 @@
-![Geolocator 2 logo](https://cfe2-static.s3-us-west-2.amazonaws.com/media/projects/srvup-2/images/share/srvup_2_share.png)
+![Geolocator 2 logo](https://cfe2-static.s3-us-west-2.amazonaws.com/media/projects/geolocator-2/images/share/Geolocator2_share.png)
 
 # Geolocator 2
 Learn how to find and work with locations in Django, the Yelp API, and Google Maps api.
