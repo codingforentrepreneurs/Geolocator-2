@@ -3,6 +3,9 @@ include/
 pip-selfcheck.json
 .DS_Store
 
+backend/src/geoip/GeoLite2-City.mmdb
+backend/src/geoip/GeoLite2-Country.mmdb
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

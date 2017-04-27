@@ -1,0 +1,3 @@
+Download the binaries of 'GeoLite2-city.mmdb' and 'GeoLite2-country.mmdb' on https://kirr.co/zq1ajh
+
+Add them to the same directory where this note is.
