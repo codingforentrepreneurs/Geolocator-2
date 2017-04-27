@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
+YELP_CLIENT_ID = 'ZWcWfw0GR2iFNbSVrZtxyg' # os.environ.get('YELP_CLIENT_ID')
+YELP_CLIENT_SECRET = 'TATGfe5b9QUcd2ckuDxWUGH8f7YkDUeRe7cWlnYbwXNppOM8hdyhnTYSYakQCAKz' # os.environ.get('YELP_CLIENT_SECRET')
+
+
 LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
