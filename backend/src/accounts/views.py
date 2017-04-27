@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView as DefaultLoginView
+from django.contrib.auth.views import LogoutView as DefaultLogoutView, LoginView as DefaultLoginView
 from django.shortcuts import render
 
 
@@ -15,3 +15,7 @@ class LoginView(DefaultLoginView): # FormView
         if self.request.user.is_authenticated():
             user_logged_in.send(self.request.user, request=self.request)
         return done_
+
+
+class LogoutView(DefaultLogoutView):
+    pass
