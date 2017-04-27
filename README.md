@@ -3,10 +3,14 @@
 # Geolocator 2
 Learn how to find and work with locations in Django, the Yelp API, and Google Maps api.
 
-
 Watch it [here](https://www.codingforentrepreneurs.com/projects/geolocator-2/)
 
-====
+
+
+Add them to the same directory where this note is.
+
+
+=====
 
 ### Lecture Code
 
@@ -29,6 +33,8 @@ Watch it [here](https://www.codingforentrepreneurs.com/projects/geolocator-2/)
 [10 - Logout View](../../tree/93b108987957a4f9538931d9f2cb0dca95089926)
 
 [11 - Setup GeoIP2](../../tree/332f6b51e6bd67cce80d721ee45f49be57c7bed6)
+
+- **GeoLite2-city.mmdb** and **GeoLite2-country.mmdb** get the [binary downloads here](https://kirr.co/zq1ajh)
 
 [12 - Get IP Address & City Data](../../tree/a344582fb7043a72afd4def012b8188ad77db52a)
 
