@@ -44,3 +44,10 @@ Add them to the same directory where this note is.
 
 [15 - Search into the API with Django](../../tree/399016a062d5d442f62d514f82aaa2b5bf6bcfb2)
 
+[16 - Handle Token Expiration](../../tree/f34e2ba58b11c8de8d03cf35cedd501134bc211e)
+
+[17 Google Maps API](../../tree/11030639e059f9d69155bf8434afe4eb92898c72)
+
+[18 - Multiple Markers on a Google Map](../../tree/d6914b992a51928e5e5f85b63242bb7c1a002a40)
+
+
