@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from .signals import user_logged_in
+
 class UserSession(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL)
     session_key     = models.CharField(max_length=60, null=True, blank=True)
@@ -15,3 +17,10 @@ class UserSession(models.Model):
         if self.city_data:
             return str(self.city_data)
         return self.user.username
+
+def user_logged_in_receiver(sender, request, *args, **kwargs):
+    user = sender
+    # request # parse the request to get the IP Address.
+
+
+user_logged_in.connect(user_logged_in_receiver)
