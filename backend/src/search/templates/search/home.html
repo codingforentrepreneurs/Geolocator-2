@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Search</h1>
+{% for biz in results.businesses %}
+{{ biz.name }}, {{ biz.location.city }}<br/>
+{% endfor %}
+
+{% endblock %}
