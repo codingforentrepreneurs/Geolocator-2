@@ -4,6 +4,7 @@
 <div class='row'>
     <div class='col-sm-6'>
     <h1>Search</h1>
+
     {% for biz in results.businesses %}
     {{ biz.name }}, {{ biz.location.city }}<br/>
     {% endfor %}
@@ -20,17 +21,53 @@
 
 
 <script>
+var locations = [
+    {% for biz in results.businesses %}
+        {
+        lat: {{ biz.coordinates.latitude }}, 
+        lng: {{ biz.coordinates.longitude }}, 
+        name: "{{ biz.name }}", 
+        address:"{{ biz.location.display_address.0 }} {{ biz.location.display_address.1 }}"
+        }, 
+    {% endfor %}
+] 
+
+
+
+var map;
+var markers;
+var infoWindow;
+
   function initMap() {
-    var uluru = {lat: 37.39532, lng: -122.09962}
+    var uluru = {lat: {{ results.businesses.0.coordinates.latitude }}, lng: {{ results.businesses.0.coordinates.longitude }}}
     // var uluru = {lat: -25.363, lng: 131.044};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12, // 0 to 18
       center: uluru
     });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
-    });
+   
+    infoWindow = new google.maps.InfoWindow()
+
+    function createMaker(latlng, name, address){
+        var html = "<b>" + name + "</b><br/>" + address
+        var marker = new google.maps.Marker({
+              position: latlng,
+              map: map
+            });
+        google.maps.event.addListener(marker, 'click', function(){
+            infoWindow.setContent(html)
+            infoWindow.open(map, marker)
+        })
+    }
+    if (locations.length > 0) {
+        for(var i = 0; i < locations.length; i++) {
+            var obj = locations[i]
+            var latlng = {lat: obj.lat, lng: obj.lng}
+            createMaker(latlng, obj.name, obj.address)
+        }
+    }
+
+
   }
 </script>
 
