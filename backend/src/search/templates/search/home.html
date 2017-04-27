@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Search</h1>
-{% for biz in results.businesses %}
-{{ biz.name }}, {{ biz.location.city }}<br/>
-{% endfor %}
+<div class='row'>
+    <div class='col-sm-6'>
+    <h1>Search</h1>
+    {% for biz in results.businesses %}
+    {{ biz.name }}, {{ biz.location.city }}<br/>
+    {% endfor %}
+
+    </div>
+    <div class='col-sm-6'>
+        <h3>My Google Maps Demo</h3>
+        <div id='map' class="gmap"></div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+  function initMap() {
+    var uluru = {lat: 37.39532, lng: -122.09962}
+    // var uluru = {lat: -25.363, lng: 131.044};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+  }
+</script>
+
+
 
 {% endblock %}
