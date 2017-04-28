@@ -6,7 +6,13 @@
     <h1>Search</h1>
 
     {% for biz in results.businesses %}
-    {{ biz.name }}, {{ biz.location.city }}<br/>
+    <li>
+        <a href='#' class='biz-item' 
+                    data-name='{{ biz.name }}' 
+                    data-address='{{ biz.location.display_address.0 }} {{ biz.location.display_address.1 }}' 
+                    data-lat='{{ biz.coordinates.latitude }}' 
+                    data-lng='{{ biz.coordinates.longitude }}'>{{ biz.name }}, {{ biz.location.city }}</a>
+    </li>
     {% endfor %}
 
     </div>
@@ -17,7 +23,14 @@
 </div>
 
 
+{% endblock %}
 
+{% block script %}
+
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqOazqPcP8E-_s-Vp7MRbP3UMUgS2xfQw&callback=initMap">
+    </script>
 
 
 <script>
@@ -35,7 +48,7 @@ var locations = [
 
 
 var map;
-var markers;
+var markers =[];
 var infoWindow;
 
   function initMap() {
@@ -58,14 +71,45 @@ var infoWindow;
             infoWindow.setContent(html)
             infoWindow.open(map, marker)
         })
+        return marker
     }
     if (locations.length > 0) {
         for(var i = 0; i < locations.length; i++) {
             var obj = locations[i]
             var latlng = {lat: obj.lat, lng: obj.lng}
-            createMaker(latlng, obj.name, obj.address)
+            var marker = createMaker(latlng, obj.name, obj.address)
+            markers.push(marker)
         }
     }
+
+    function clearLocations(){
+        infoWindow.close()
+        for (var i = 0; i < markers.length; i++){
+            markers[i].setMap(null)
+        }
+        markers.length = 0
+    }
+
+
+    $('.biz-item').click(function(event){
+        event.preventDefault()
+        var locData = $(this)
+        console.log(locData)
+        var name = locData.attr("data-name")
+        var address = locData.attr("data-address")
+        var lat = parseFloat(locData.attr("data-lat"))
+        var lng = parseFloat(locData.attr("data-lng"))
+        var latlng = {lat: lat, lng: lng} 
+        // 
+        // clearLocations()
+        var marker = createMaker(latlng, name, address)
+        markers.push(marker)
+        google.maps.event.trigger(marker, 'click')
+        map.setCenter(latlng)
+        map.setZoom(16)
+    })
+
+
 
 
   }
