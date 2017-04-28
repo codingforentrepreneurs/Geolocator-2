@@ -50,4 +50,6 @@ Add them to the same directory where this note is.
 
 [18 - Multiple Markers on a Google Map](../../tree/d6914b992a51928e5e5f85b63242bb7c1a002a40)
 
+[19 - Click, Pan, and Zoom to Item in Google Map](../../tree/e28a8f8850874f47c52fef4ffe0eff0845d0b3f9)
 
+[20 - New Results on Map Move](../../tree/77ac14543e686edd963b8728992407a28f180462)
