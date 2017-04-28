@@ -17,7 +17,7 @@
 
     </div>
     <div class='col-sm-6'>
-        <h3>My Google Maps Demo</h3>
+        <h3>My Google Maps Demo <small><a href='/search/?q={{ request.GET.q }}' style="display:none" id='search-here'>Search here?</a></small></h3>
         <div id='map' class="gmap"></div>
     </div>
 </div>
@@ -55,10 +55,39 @@ var infoWindow;
     var uluru = {lat: {{ results.businesses.0.coordinates.latitude }}, lng: {{ results.businesses.0.coordinates.longitude }}}
     // var uluru = {lat: -25.363, lng: 131.044};
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12, // 0 to 18
+      zoom: parseInt({{ request.GET.zoom }}) || 12, // 0 to 18
       center: uluru
     });
-   
+    var searchLink = $('#search-here')
+    var defaultSearchLink = searchLink.attr("href")
+    map.addListener('center_changed', function(){
+        window.setTimeout(function(){
+            var mLat = map.center.lat()
+            var mLng = map.center.lng()
+            getLocalName(mLat, mLng)
+            searchLink.fadeIn()
+            // searchLink.attr('href', defaultSearchLink + "&loc=" + mLat + "+" + mLng)
+            
+        }, 1000)
+       
+    })
+
+
+    function getLocalName(lat, lng){
+        var geocoder = new google.maps.Geocoder()
+        var location = new google.maps.LatLng(lat, lng)
+        geocoder.geocode({'latLng': location}, function(results, status){
+            if( status== google.maps.GeocoderStatus.OK) {
+                if (results[2].address_components[2]){
+                var longName = results[2].address_components[2].long_name
+                console.log(longName)
+                searchLink.attr('href', defaultSearchLink + "&loc=" + longName + "&zoom=" + 6)
+                }
+                // return longName
+            }
+
+        })
+    }
     infoWindow = new google.maps.InfoWindow()
 
     function createMaker(latlng, name, address){
