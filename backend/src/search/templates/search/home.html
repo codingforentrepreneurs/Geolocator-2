@@ -79,9 +79,9 @@ var infoWindow;
         geocoder.geocode({'latLng': location}, function(results, status){
             if( status== google.maps.GeocoderStatus.OK) {
                 if (results[2].address_components[2]){
-                var longName = results[2].address_components[2].long_name
-                console.log(longName)
-                searchLink.attr('href', defaultSearchLink + "&loc=" + longName + "&zoom=" + 6)
+                    var longName = results[2].address_components[2].long_name
+                    console.log(longName)
+                    searchLink.attr('href', defaultSearchLink + "&loc=" + longName + "&zoom=" + 6)
                 }
                 // return longName
             }
